@@ -13,6 +13,13 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <ImageButton
+            android:id="@+id/btn_notifications"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/white"
+            android:contentDescription="Notifications" />
+
         <!-- TextView para el monto total -->
         <TextView
             android:id="@+id/tv_total"
@@ -148,7 +155,6 @@
                     android:textColor="@color/white"
                     android:textSize="12sp" />
             </LinearLayout>
-            <!-- Repetir para los demás botones (Receive, Buy, Trade) -->
         </LinearLayout>
     </LinearLayout>
 
@@ -174,76 +180,96 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
-    </LinearLayout>
 
+        <!-- TODOO LO DE ARRIBA IRA A "fragment_home.xml" -->
+        <!-- ESTO ES LO UNICO QUE QUEDARA AQUI JUNTO CON EL NAVHOSTFRAGMENT -->
+        <!-- ************************************************************** -->
 
-    <!-- REVISAR -->
-    <!-- ************************************************************************** -->
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <LinearLayout
+        <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/btn_wallet"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@color/black"
-                    android:contentDescription="Wallet" />
-
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Wallet"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-            </LinearLayout>
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:padding="8dp">
+                    <ImageButton
+                        android:id="@+id/btn_wallet"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@color/black"
+                        android:contentDescription="Wallet" />
 
-                <ImageButton
-                    android:id="@+id/btn_discover"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@color/black"
-                    android:contentDescription="Discover" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Wallet"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Discover"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageButton
+                        android:id="@+id/btn_discover"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@color/black"
+                        android:contentDescription="Discover" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Discover"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageButton
+                        android:id="@+id/btn_settings"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@color/black"
+                        android:contentDescription="Settings" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Settings"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-    <!-- REVISAR -->
-    <!-- ************************************************************************** -->
+        <!-- ESTO ES LO UNICO QUE QUEDARA AQUI JUNTO CON EL NAVHOSTFRAGMENT -->
+        <!-- ************************************************************** -->
 
-
+    </LinearLayout>
 </LinearLayout>
