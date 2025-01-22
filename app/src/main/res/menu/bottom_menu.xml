@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/walletBottomFragment"
+        android:icon="@color/black"
+        android:title="Wallet" />
+    <item
+        android:id="@+id/discoverBottomFragment"
+        android:icon="@color/black"
+        android:title="Discover" />
+</menu>

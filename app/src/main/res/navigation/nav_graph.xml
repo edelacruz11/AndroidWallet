@@ -3,60 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
-
-    <!-- Fragmento de inicio (Home) -->
-    <fragment
-        android:id="@+id/homeFragment"
-        android:label="Home"
-        tools:layout="@layout/fragment_home" />
-
-    <!-- Fragment Notifications -->
-    <fragment
-        android:id="@+id/notificationFragment"
-        android:label="Wallet"
-        tools:layout="@layout/fragment_notification" />
+    app:startDestination="@id/walletBottomFragment">
 
     <!-- Fragment Send -->
     <fragment
         android:id="@+id/sendFragment"
-        android:label="Wallet"
+        android:name="com.example.androidwallet.sendFragment"
+        android:label="fragment_send"
         tools:layout="@layout/fragment_send" />
 
     <!-- Fragment Recive -->
     <fragment
         android:id="@+id/reciveFragment"
-        android:label="Wallet"
+        android:name="com.example.androidwallet.reciveFragment"
+        android:label="fragment_recive"
         tools:layout="@layout/fragment_recive" />
 
     <!-- Fragment Buy -->
     <fragment
         android:id="@+id/buyFragment"
-        android:label="Wallet"
+        android:name="com.example.androidwallet.buyFragment"
+        android:label="fragment_buy"
         tools:layout="@layout/fragment_buy" />
 
-    <!-- Fragment Trade -->
+    <!-- Fragment Wallet (Home) -->
     <fragment
-        android:id="@+id/tradeFragment"
-        android:label="Wallet"
-        tools:layout="@layout/fragment_trade" />
-
-    <!-- Fragment Wallet -->
-    <fragment
-        android:id="@+id/walletFragment"
-        android:label="Wallet"
-        tools:layout="@layout/fragment_wallet" />
+        android:id="@+id/walletBottomFragment"
+        android:name="com.example.androidwallet.walletBottomFragment"
+        android:label="fragment_wallet_bottom"
+        tools:layout="@layout/fragment_wallet_bottom" />
 
     <!-- Fragment Discover -->
     <fragment
-        android:id="@+id/discoverFragment"
-        android:label="Discover"
-        tools:layout="@layout/fragment_discover" />
-
-    <!-- Fragmento Settings -->
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:label="Settings"
-        tools:layout="@layout/fragment_settings" />
+        android:id="@+id/discoverBottomFragment"
+        android:name="com.example.androidwallet.discoverBottomFragment"
+        android:label="fragment_discover_bottom"
+        tools:layout="@layout/fragment_discover_bottom" />
 
 </navigation>
