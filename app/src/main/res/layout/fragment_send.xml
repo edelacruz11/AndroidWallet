@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="120dp"
         android:background="#2A66D1"
         android:orientation="vertical">
 
@@ -17,10 +17,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:text="Envia cualquier moneda a otra cartera"
             android:textColor="@color/white"
-            android:textSize="40sp" />
+            android:textSize="30sp" />
 
     </LinearLayout>
 
@@ -28,17 +28,17 @@
         android:id="@+id/moneda_text_enviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="25dp"
         android:text="Moneda"
         android:textColor="@color/black"
-        android:textSize="40sp" />
+        android:textSize="30sp" />
 
     <Spinner
         android:id="@+id/monedas_spinner_enviar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp" />
 
@@ -46,27 +46,46 @@
         android:id="@+id/cantidad_text_enviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="25dp"
         android:text="Cantidad"
         android:textColor="@color/black"
-        android:textSize="40sp" />
+        android:textSize="30sp" />
 
     <EditText
         android:id="@+id/cantidad_moneda_enviar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:hint="Cantidad a enviar"/>
+
+    <TextView
+        android:id="@+id/otra_wallet_text_enviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp"
+        android:text="Wallet a enviar"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/otra_wallet_moneda_enviar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:hint="Introduce la wallet de destino"/>
 
     <Button
         android:id="@+id/enviar_moneda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#2A66D1"
         android:text="Enviar" />
 

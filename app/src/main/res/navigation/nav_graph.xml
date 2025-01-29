@@ -24,7 +24,14 @@
         android:id="@+id/walletBottomFragment"
         android:name="com.example.androidwallet.walletBottomFragment"
         android:label="fragment_wallet_bottom"
-        tools:layout="@layout/fragment_wallet_bottom" />
+        tools:layout="@layout/fragment_wallet_bottom"/>
+
+        <action
+            android:id="@+id/action_wallet_to_buy"
+            app:destination="@id/buyFragment" />
+        <action
+            android:id="@+id/action_wallet_to_send"
+            app:destination="@id/sendFragment" />
 
     <!-- Fragment Discover -->
     <fragment

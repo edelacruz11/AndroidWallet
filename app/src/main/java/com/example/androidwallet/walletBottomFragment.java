@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.androidwallet.databinding.FragmentWalletBottomBinding;
@@ -42,6 +43,15 @@ public class walletBottomFragment extends Fragment {
                     break;
             }
         }).attach();
+
+        // Configurar botones de navegación
+        binding.btnBuy.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_wallet_to_buy)
+        );
+
+        binding.btnSend.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_wallet_to_send)
+        );
     }
 
     @Override
