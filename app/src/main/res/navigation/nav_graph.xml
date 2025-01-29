@@ -12,13 +12,6 @@
         android:label="fragment_send"
         tools:layout="@layout/fragment_send" />
 
-    <!-- Fragment Recive -->
-    <fragment
-        android:id="@+id/reciveFragment"
-        android:name="com.example.androidwallet.reciveFragment"
-        android:label="fragment_recive"
-        tools:layout="@layout/fragment_recive" />
-
     <!-- Fragment Buy -->
     <fragment
         android:id="@+id/buyFragment"
