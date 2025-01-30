@@ -6,13 +6,13 @@ import androidx.lifecycle.ViewModel;
 import java.util.List;
 
 public class WalletViewModel extends ViewModel {
-    private final MutableLiveData<List<String>> monedas = new MutableLiveData<>();
+    private final MutableLiveData<List<Crypto>> monedas = new MutableLiveData<>();
 
-    public void setMonedas(List<String> lista) {
+    public void setMonedas(List<Crypto> lista) {
         monedas.setValue(lista);
     }
 
-    public LiveData<List<String>> getMonedas() {
+    public LiveData<List<Crypto>> getMonedas() {
         return monedas;
     }
 }

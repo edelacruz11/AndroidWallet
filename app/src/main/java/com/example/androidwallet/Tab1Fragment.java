@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.androidwallet.WalletViewModel;
 import com.example.androidwallet.databinding.Tab1FragmentBinding;
 
 import java.util.Arrays;
@@ -34,8 +34,13 @@ public class Tab1Fragment extends Fragment {
         // Instanciar ViewModel compartido
         walletViewModel = new ViewModelProvider(requireActivity()).get(WalletViewModel.class);
 
-        // Simulación de lista de monedas (debería venir del RecyclerView)
-        List<String> listaMonedas = Arrays.asList("Bitcoin", "Ethereum", "Cardano", "Solana");
+        // Simulación de lista de monedas con imagen, cantidad y valor en euros
+        List<Crypto> listaMonedas = Arrays.asList(
+                new Crypto("Bitcoin", 0.5, 15000, R.drawable.ic_launcher_foreground),
+                new Crypto("Ethereum", 2.0, 5000, R.drawable.ic_launcher_foreground),
+                new Crypto("Cardano", 100, 300, R.drawable.ic_launcher_foreground),
+                new Crypto("Solana", 50, 1000, R.drawable.ic_launcher_foreground)
+        );
 
         // Guardar lista en WalletViewModel
         walletViewModel.setMonedas(listaMonedas);

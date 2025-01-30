@@ -9,9 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.example.androidwallet.WalletViewModel;
 import com.example.androidwallet.databinding.FragmentSendBinding;
+import java.util.ArrayList;
 import java.util.List;
 
 public class sendFragment extends Fragment {
@@ -33,8 +32,13 @@ public class sendFragment extends Fragment {
         // Observar cambios en la lista de monedas
         walletViewModel.getMonedas().observe(getViewLifecycleOwner(), listaMonedas -> {
             if (listaMonedas != null) {
+                List<String> nombresMonedas = new ArrayList<>();
+                for (Crypto moneda : listaMonedas) {
+                    nombresMonedas.add(moneda.getNombre()); // Extraer solo los nombres
+                }
+
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
-                        android.R.layout.simple_spinner_item, listaMonedas);
+                        android.R.layout.simple_spinner_item, nombresMonedas);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 binding.monedasSpinnerEnviar.setAdapter(adapter);
             }
