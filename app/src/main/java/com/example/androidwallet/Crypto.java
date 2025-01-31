@@ -1,15 +1,20 @@
 package com.example.androidwallet;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "wallet_table")
 public class Crypto {
+    @PrimaryKey
+    @NonNull
     private String nombre;
     private double cantidad;
-    private double valorEnEuros;
-    private int imagenResId; // ID de recurso para la imagen
+    private int imagenResId;  // Añadir este campo
 
-    public Crypto(String nombre, double cantidad, double valorEnEuros, int imagenResId) {
+    public Crypto(@NonNull String nombre, double cantidad, int imagenResId) {
         this.nombre = nombre;
         this.cantidad = cantidad;
-        this.valorEnEuros = valorEnEuros;
         this.imagenResId = imagenResId;
     }
 
@@ -19,10 +24,6 @@ public class Crypto {
 
     public double getCantidad() {
         return cantidad;
-    }
-
-    public double getValorEnEuros() {
-        return valorEnEuros;
     }
 
     public int getImagenResId() {

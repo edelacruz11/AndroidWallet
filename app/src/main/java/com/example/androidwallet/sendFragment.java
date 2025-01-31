@@ -4,51 +4,52 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import com.example.androidwallet.databinding.FragmentSendBinding;
-import java.util.ArrayList;
-import java.util.List;
 
 public class sendFragment extends Fragment {
-    private FragmentSendBinding binding;
     private WalletViewModel walletViewModel;
+    private Spinner spinnerMonedas;
+    private EditText cantidadInput;
+    private Button btnEnviar;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentSendBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_send, container, false);
+
+        walletViewModel = new ViewModelProvider(this).get(WalletViewModel.class);
+
+        spinnerMonedas = root.findViewById(R.id.monedas_spinner_enviar);
+        cantidadInput = root.findViewById(R.id.cantidad_moneda_enviar);
+        btnEnviar = root.findViewById(R.id.enviar_moneda);
+
+        btnEnviar.setOnClickListener(v -> enviarCrypto());
+
+        return root;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    private void enviarCrypto() {
+        String nombreMoneda = spinnerMonedas.getSelectedItem().toString();
+        String cantidadStr = cantidadInput.getText().toString();
 
-        walletViewModel = new ViewModelProvider(requireActivity()).get(WalletViewModel.class);
+        if (cantidadStr.isEmpty()) {
+            Toast.makeText(getContext(), "Introduce una cantidad", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        // Observar cambios en la lista de monedas
-        walletViewModel.getMonedas().observe(getViewLifecycleOwner(), listaMonedas -> {
-            if (listaMonedas != null) {
-                List<String> nombresMonedas = new ArrayList<>();
-                for (Crypto moneda : listaMonedas) {
-                    nombresMonedas.add(moneda.getNombre()); // Extraer solo los nombres
-                }
+        double cantidad = Double.parseDouble(cantidadStr);
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
-                        android.R.layout.simple_spinner_item, nombresMonedas);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                binding.monedasSpinnerEnviar.setAdapter(adapter);
-            }
-        });
-
-        // Botón para enviar
-        binding.enviarMoneda.setOnClickListener(v -> {
-            String monedaSeleccionada = (String) binding.monedasSpinnerEnviar.getSelectedItem();
-            String cantidad = binding.cantidadMonedaEnviar.getText().toString();
-            // Lógica para enviar la moneda
-        });
+        // Enviar la criptomoneda
+        boolean success = walletViewModel.sendCrypto(nombreMoneda, cantidad);
+        if (success) {
+            Toast.makeText(getContext(), "Envío realizado", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "Saldo insuficiente", Toast.LENGTH_SHORT).show();
+        }
     }
 }

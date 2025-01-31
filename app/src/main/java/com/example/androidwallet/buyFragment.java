@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,7 +51,18 @@ public class buyFragment extends Fragment {
         binding.comprarMoneda.setOnClickListener(v -> {
             String monedaSeleccionada = (String) binding.monedasSpinnerComprar.getSelectedItem();
             String cantidad = binding.cantidadMonedaComprar.getText().toString();
+
+            if (cantidad.isEmpty()) {
+                Toast.makeText(getContext(), "Introduce una cantidad", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            double cantidadDouble = Double.parseDouble(cantidad);
+
             // Lógica para comprar la moneda
+            walletViewModel.buyCrypto(monedaSeleccionada, cantidadDouble);
+
+            Toast.makeText(getContext(), "Moneda comprada", Toast.LENGTH_SHORT).show();
         });
     }
 }
