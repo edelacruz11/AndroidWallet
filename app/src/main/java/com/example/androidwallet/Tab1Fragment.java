@@ -36,10 +36,10 @@ public class Tab1Fragment extends Fragment {
 
         // Simulación de lista de monedas con imagen, cantidad y valor en euros
         List<Crypto> listaMonedas = Arrays.asList(
-                new Crypto("Bitcoin", 0.5, 15000, R.drawable.ic_launcher_foreground),
-                new Crypto("Ethereum", 2.0, 5000, R.drawable.ic_launcher_foreground),
-                new Crypto("Cardano", 100, 300, R.drawable.ic_launcher_foreground),
-                new Crypto("Solana", 50, 1000, R.drawable.ic_launcher_foreground)
+                new Crypto("Bitcoin", 0.0, 0, R.drawable.bitcoin),
+                new Crypto("Ethereum", 0.0, 0, R.drawable.ethereum),
+                new Crypto("Cardano", 0.0, 0, R.drawable.cardano),
+                new Crypto("Solana", 0.0, 0, R.drawable.solana)
         );
 
         // Guardar lista en WalletViewModel
