@@ -7,15 +7,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+public class Adapter extends ListAdapter<Crypto, Adapter.ViewHolder> {
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
-    private List<Crypto> data;
-
-    public Adapter(List<Crypto> data) {
-        this.data = data;
+    // Constructor vacío, ya no necesitamos pasar la lista
+    protected Adapter() {
+        super(DIFF_CALLBACK);
     }
 
     public void setData(List<Crypto> newData) {
@@ -32,18 +32,32 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Crypto crypto = data.get(position);
+        Crypto crypto = getItem(position);  // Usar getItem() para obtener los datos
         holder.cryptoName.setText(crypto.getNombre());
         holder.cryptoAmount.setText(crypto.getCantidad() + " " + crypto.getNombre().substring(0, 3));
-        holder.cryptoValue.setText(crypto.getValorEnEuros() + "€");
+        holder.cryptoValue.setText(crypto.getCantidad() * 10 + "€");  // Asegúrate de poner el valor correcto
         holder.cryptoImage.setImageResource(crypto.getImagenResId());
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return getCurrentList().size();  // Usar getCurrentList() en lugar de data.size()
     }
 
+    // DiffUtil para manejar la diferencia entre las listas
+    private static final DiffUtil.ItemCallback<Crypto> DIFF_CALLBACK = new DiffUtil.ItemCallback<Crypto>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Crypto oldItem, @NonNull Crypto newItem) {
+            return oldItem.getNombre().equals(newItem.getNombre());
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Crypto oldItem, @NonNull Crypto newItem) {
+            return oldItem.getCantidad() == newItem.getCantidad();  // Comparar por cantidad también
+        }
+    };
+
+    // ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView cryptoImage;
         TextView cryptoName, cryptoAmount, cryptoValue;
