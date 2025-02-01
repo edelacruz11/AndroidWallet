@@ -37,7 +37,8 @@ public class walletBottomFragment extends Fragment {
         // Observar cambios en las criptos y actualizar el saldo total
         walletViewModel.getMonedas().observe(getViewLifecycleOwner(), lista -> {
             double total = 0.0;
-            for (Crypto crypto : lista) {
+            // Cambié el tipo de Crypto a CryptoBalance
+            for (CryptoBalance crypto : lista) {
                 total += crypto.getValorEnEuros(); // Sumar los valores en euros de todas las criptos
             }
             binding.walletCantidad.setText(String.format("%.2f€", total)); // Formato de dos decimales

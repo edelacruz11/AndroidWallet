@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.androidwallet.databinding.Tab1FragmentBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Tab1Fragment extends Fragment {
     private Tab1FragmentBinding binding;
@@ -40,6 +41,7 @@ public class Tab1Fragment extends Fragment {
 
         // Observar cambios en la lista de monedas
         walletViewModel.getMonedas().observe(getViewLifecycleOwner(), listaMonedas -> {
+            // Pasar la lista de CryptoBalance al adaptador
             adapter.setData(listaMonedas);
             adapter.notifyDataSetChanged();
         });

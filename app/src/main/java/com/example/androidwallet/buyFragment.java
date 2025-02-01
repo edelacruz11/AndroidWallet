@@ -38,7 +38,7 @@ public class buyFragment extends Fragment {
         walletViewModel.getMonedas().observe(getViewLifecycleOwner(), listaMonedas -> {
             if (listaMonedas != null) {
                 List<String> nombresMonedas = listaMonedas.stream()
-                        .map(Crypto::getNombre)
+                        .map(CryptoBalance::getNombre) // Usar CryptoBalance
                         .collect(Collectors.toList());
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),

@@ -38,7 +38,7 @@ public class sendFragment extends Fragment {
         walletViewModel.getMonedas().observe(getViewLifecycleOwner(), listaMonedas -> {
             if (listaMonedas != null) {
                 List<String> nombresMonedas = listaMonedas.stream()
-                        .map(Crypto::getNombre)
+                        .map(CryptoBalance::getNombre) // Usar CryptoBalance
                         .collect(Collectors.toList());
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
@@ -74,9 +74,9 @@ public class sendFragment extends Fragment {
                 }
 
                 // Verificar si hay saldo suficiente
-                List<Crypto> listaActual = walletViewModel.getMonedas().getValue();
+                List<CryptoBalance> listaActual = walletViewModel.getMonedas().getValue();
                 if (listaActual != null) {
-                    for (Crypto crypto : listaActual) {
+                    for (CryptoBalance crypto : listaActual) {
                         if (crypto.getNombre().equals(monedaSeleccionada)) {
                             if (crypto.getCantidad() >= cantidad) {
                                 walletViewModel.enviarCrypto(monedaSeleccionada, cantidad);

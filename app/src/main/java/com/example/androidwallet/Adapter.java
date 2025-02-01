@@ -12,14 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
-    private List<Crypto> data;
+    private List<CryptoBalance> data;
 
-    public Adapter(List<Crypto> data) {
+    public Adapter(List<CryptoBalance> data) {
         this.data = data;
     }
 
-    public void setData(List<Crypto> newData) {
+    public void setData(List<CryptoBalance> newData) {
         this.data = newData;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -32,11 +33,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Crypto crypto = data.get(position);
-        holder.cryptoName.setText(crypto.getNombre());
-        holder.cryptoAmount.setText(crypto.getCantidad() + " " + crypto.getNombre().substring(0, 3));
-        holder.cryptoValue.setText(crypto.getValorEnEuros() + "€");
-        holder.cryptoImage.setImageResource(crypto.getImagenResId());
+        CryptoBalance cryptoBalance = data.get(position);
+        holder.cryptoName.setText(cryptoBalance.getNombre());
+        holder.cryptoAmount.setText(cryptoBalance.getCantidad() + " " + cryptoBalance.getNombre().substring(0, 3));
+        holder.cryptoValue.setText(cryptoBalance.getValorEnEuros() + "€");
+        holder.cryptoImage.setImageResource(getImageResourceId(cryptoBalance.getNombre()));
     }
 
     @Override
@@ -54,6 +55,21 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             cryptoName = itemView.findViewById(R.id.crypto_nombre);
             cryptoAmount = itemView.findViewById(R.id.crypto_cantidad);
             cryptoValue = itemView.findViewById(R.id.crypto_valor);
+        }
+    }
+
+    private int getImageResourceId(String nombre) {
+        switch (nombre) {
+            case "Bitcoin":
+                return R.drawable.bitcoin;
+            case "Ethereum":
+                return R.drawable.ethereum;
+            case "Cardano":
+                return R.drawable.cardano;
+            case "Solana":
+                return R.drawable.solana;
+            default:
+                return R.drawable.ic_launcher_foreground;
         }
     }
 }
