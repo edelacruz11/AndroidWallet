@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 public class CryptoBalance {
     @PrimaryKey
     @NonNull
-    private String nombre;  // Usamos el nombre de la crypto como clave primaria
+    private String nombre;
     private double cantidad;
     private double valorEnEuros;
 
@@ -21,10 +21,6 @@ public class CryptoBalance {
     @NonNull
     public String getNombre() {
         return nombre;
-    }
-
-    public void setNombre(@NonNull String nombre) {
-        this.nombre = nombre;
     }
 
     public double getCantidad() {

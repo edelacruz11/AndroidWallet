@@ -41,7 +41,7 @@ public class Tab1Fragment extends Fragment {
 
         // Observar cambios en la lista de monedas
         walletViewModel.getMonedas().observe(getViewLifecycleOwner(), listaMonedas -> {
-            // Pasar la lista de CryptoBalance al adaptador
+            // Pasar la lista de CryptoBalance al adaptader
             adapter.setData(listaMonedas);
             adapter.notifyDataSetChanged();
         });

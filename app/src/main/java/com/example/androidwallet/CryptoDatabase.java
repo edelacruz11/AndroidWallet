@@ -9,30 +9,29 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 @Database(entities = {CryptoBalance.class,}, version = 2)
-public abstract class AppDatabase extends RoomDatabase {
-    private static volatile AppDatabase INSTANCE;
+public abstract class CryptoDatabase extends RoomDatabase {
+    private static volatile CryptoDatabase INSTANCE;
 
     public abstract CryptoBalanceDao cryptoBalanceDao();
 
-    // Método para obtener la instancia de la base de datos
-    public static AppDatabase getDatabase(final Context context) {
+    // obtener instancia de la base de datos
+    public static CryptoDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (AppDatabase.class) {
+            synchronized (CryptoDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    AppDatabase.class, "nombre_de_base_de_datos")
+                                    CryptoDatabase.class, "cryptodatabase")
                             .addCallback(new RoomDatabase.Callback() {
                                 @Override
                                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
                                     super.onCreate(db);
-                                    // Insertar datos predeterminados aquí
+                                    // datos predeterminados aquí
                                     new Thread(() -> {
                                         CryptoBalanceDao dao = INSTANCE.cryptoBalanceDao();
                                         dao.insert(new CryptoBalance("Bitcoin", 0, 0.0));
                                         dao.insert(new CryptoBalance("Ethereum", 0, 0.0));
                                         dao.insert(new CryptoBalance("Cardano", 0, 0.0));
                                         dao.insert(new CryptoBalance("Solana", 0, 0.0));
-                                        // Agregar más datos si es necesario
                                     }).start();
                                 }
                             })

@@ -2,7 +2,7 @@ package com.example.androidwallet;
 
 public class NFT {
     private String nombre;
-    private int imagenResId; // ID del recurso para la imagen del NFT
+    private int imagenResId;
 
     public NFT(String nombre, int imagenResId) {
         this.nombre = nombre;

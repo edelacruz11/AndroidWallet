@@ -68,7 +68,7 @@ public class buyFragment extends Fragment {
                 // Realizar compra
                 walletViewModel.comprarCrypto(monedaSeleccionada, cantidad);
                 NavController navController = Navigation.findNavController(v);
-                navController.popBackStack(); // Volver atrás después de la compra
+                navController.popBackStack();
             } catch (NumberFormatException e) {
                 binding.cantidadMonedaComprar.setError("Ingrese un número válido");
             }

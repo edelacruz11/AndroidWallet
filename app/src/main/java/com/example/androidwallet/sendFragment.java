@@ -81,7 +81,7 @@ public class sendFragment extends Fragment {
                             if (crypto.getCantidad() >= cantidad) {
                                 walletViewModel.enviarCrypto(monedaSeleccionada, cantidad);
                                 NavController navController = Navigation.findNavController(v);
-                                navController.popBackStack(); // Volver atrás tras enviar
+                                navController.popBackStack();
                             } else {
                                 binding.cantidadMonedaEnviar.setError("Saldo insuficiente");
                             }
