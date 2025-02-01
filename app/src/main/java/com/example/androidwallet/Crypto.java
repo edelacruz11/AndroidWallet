@@ -4,7 +4,7 @@ public class Crypto {
     private String nombre;
     private double cantidad;
     private double valorEnEuros;
-    private int imagenResId; // ID de recurso para la imagen
+    private int imagenResId;
 
     public Crypto(String nombre, double cantidad, double valorEnEuros, int imagenResId) {
         this.nombre = nombre;
@@ -27,5 +27,13 @@ public class Crypto {
 
     public int getImagenResId() {
         return imagenResId;
+    }
+
+    public void setCantidad(double cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public void setValorEnEuros(double valorEnEuros) {
+        this.valorEnEuros = valorEnEuros;
     }
 }

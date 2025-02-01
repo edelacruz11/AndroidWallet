@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.androidwallet.databinding.FragmentBuyBinding;
 
@@ -32,7 +34,7 @@ public class buyFragment extends Fragment {
 
         walletViewModel = new ViewModelProvider(requireActivity()).get(WalletViewModel.class);
 
-        // Observar cambios en la lista de monedas y actualizar el Spinner
+        // Cargar las criptomonedas en el Spinner
         walletViewModel.getMonedas().observe(getViewLifecycleOwner(), listaMonedas -> {
             if (listaMonedas != null) {
                 List<String> nombresMonedas = listaMonedas.stream()
@@ -49,8 +51,33 @@ public class buyFragment extends Fragment {
         // Botón para comprar
         binding.comprarMoneda.setOnClickListener(v -> {
             String monedaSeleccionada = (String) binding.monedasSpinnerComprar.getSelectedItem();
-            String cantidad = binding.cantidadMonedaComprar.getText().toString();
-            // Lógica para comprar la moneda
+            String cantidadStr = binding.cantidadMonedaComprar.getText().toString().trim();
+
+            // Validar entrada
+            if (cantidadStr.isEmpty()) {
+                binding.cantidadMonedaComprar.setError("Ingrese una cantidad");
+                return;
+            }
+            try {
+                double cantidad = Double.parseDouble(cantidadStr);
+                if (cantidad <= 0) {
+                    binding.cantidadMonedaComprar.setError("Ingrese una cantidad válida");
+                    return;
+                }
+
+                // Realizar compra
+                walletViewModel.comprarCrypto(monedaSeleccionada, cantidad);
+                NavController navController = Navigation.findNavController(v);
+                navController.popBackStack(); // Volver atrás después de la compra
+            } catch (NumberFormatException e) {
+                binding.cantidadMonedaComprar.setError("Ingrese un número válido");
+            }
         });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

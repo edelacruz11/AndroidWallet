@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.androidwallet.databinding.Tab1FragmentBinding;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Tab1Fragment extends Fragment {
     private Tab1FragmentBinding binding;
     private WalletViewModel walletViewModel;
+    private Adapter adapter;
 
     @Nullable
     @Override
@@ -31,29 +31,17 @@ public class Tab1Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Instanciar ViewModel compartido
         walletViewModel = new ViewModelProvider(requireActivity()).get(WalletViewModel.class);
 
-        // Simulación de lista de monedas con imagen, cantidad y valor en euros
-        List<Crypto> listaMonedas = Arrays.asList(
-                new Crypto("Bitcoin", 0.0, 0, R.drawable.bitcoin),
-                new Crypto("Ethereum", 0.0, 0, R.drawable.ethereum),
-                new Crypto("Cardano", 0.0, 0, R.drawable.cardano),
-                new Crypto("Solana", 0.0, 0, R.drawable.solana)
-        );
-
-        // Guardar lista en WalletViewModel
-        walletViewModel.setMonedas(listaMonedas);
-
         // Configurar RecyclerView
-        Adapter adapter = new Adapter(listaMonedas);
+        adapter = new Adapter(new ArrayList<>());
         binding.recyclerViewCoins.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerViewCoins.setAdapter(adapter);
-    }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+        // Observar cambios en la lista de monedas
+        walletViewModel.getMonedas().observe(getViewLifecycleOwner(), listaMonedas -> {
+            adapter.setData(listaMonedas);
+            adapter.notifyDataSetChanged();
+        });
     }
 }

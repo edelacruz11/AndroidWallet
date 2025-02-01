@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
@@ -17,6 +18,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class walletBottomFragment extends Fragment {
 
     private FragmentWalletBottomBinding binding;
+    private WalletViewModel walletViewModel;
 
     @Nullable
     @Override
@@ -28,6 +30,18 @@ public class walletBottomFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Inicializar ViewModel
+        walletViewModel = new ViewModelProvider(requireActivity()).get(WalletViewModel.class);
+
+        // Observar cambios en las criptos y actualizar el saldo total
+        walletViewModel.getMonedas().observe(getViewLifecycleOwner(), lista -> {
+            double total = 0.0;
+            for (Crypto crypto : lista) {
+                total += crypto.getValorEnEuros(); // Sumar los valores en euros de todas las criptos
+            }
+            binding.walletCantidad.setText(String.format("%.2f€", total)); // Formato de dos decimales
+        });
 
         // Configurar ViewPager2 con adaptador
         binding.viewPager.setAdapter(new ViewPagerAdapter(this));
