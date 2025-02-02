@@ -14,7 +14,7 @@ public abstract class CryptoDatabase extends RoomDatabase {
 
     public abstract CryptoBalanceDao cryptoBalanceDao();
 
-    // obtener instancia de la base de datos
+    // Obtener instancia de la base de datos
     public static CryptoDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (CryptoDatabase.class) {
@@ -25,7 +25,7 @@ public abstract class CryptoDatabase extends RoomDatabase {
                                 @Override
                                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
                                     super.onCreate(db);
-                                    // datos predeterminados aquí
+                                    // Datos predeterminados
                                     new Thread(() -> {
                                         CryptoBalanceDao dao = INSTANCE.cryptoBalanceDao();
                                         dao.insert(new CryptoBalance("Bitcoin", 0, 0.0));

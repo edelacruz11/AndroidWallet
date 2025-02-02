@@ -8,13 +8,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="8dp"
+        android:layout_margin="40dp"
         android:gravity="center">
 
         <ImageView
             android:id="@+id/nft_imagen"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:scaleType="centerCrop" />
 
         <TextView
@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:layout_marginTop="4dp"
+            android:textColor="@color/black"
             android:text="NFT nombre"
             android:gravity="center" />
     </LinearLayout>

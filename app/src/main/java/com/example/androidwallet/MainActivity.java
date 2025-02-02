@@ -16,11 +16,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Configurar ViewBinding
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Configurar Navigation Component con BottomNavigationView
         NavController navController = ((NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment))
                 .getNavController();

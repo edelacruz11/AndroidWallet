@@ -38,7 +38,7 @@ public class buyFragment extends Fragment {
         walletViewModel.getMonedas().observe(getViewLifecycleOwner(), listaMonedas -> {
             if (listaMonedas != null) {
                 List<String> nombresMonedas = listaMonedas.stream()
-                        .map(CryptoBalance::getNombre) // Usar CryptoBalance
+                        .map(CryptoBalance::getNombre)
                         .collect(Collectors.toList());
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
@@ -53,7 +53,6 @@ public class buyFragment extends Fragment {
             String monedaSeleccionada = (String) binding.monedasSpinnerComprar.getSelectedItem();
             String cantidadStr = binding.cantidadMonedaComprar.getText().toString().trim();
 
-            // Validar entrada
             if (cantidadStr.isEmpty()) {
                 binding.cantidadMonedaComprar.setError("Ingrese una cantidad");
                 return;
@@ -65,7 +64,6 @@ public class buyFragment extends Fragment {
                     return;
                 }
 
-                // Realizar compra
                 walletViewModel.comprarCrypto(monedaSeleccionada, cantidad);
                 NavController navController = Navigation.findNavController(v);
                 navController.popBackStack();

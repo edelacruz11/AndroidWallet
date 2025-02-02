@@ -26,7 +26,6 @@ public class WalletViewModel extends AndroidViewModel {
 
         executor = Executors.newSingleThreadExecutor();
 
-        // Cargar las criptos desde la base de datos
         cryptoRepository.getAllCryptoBalances().observeForever(monedas::setValue);
 
         preciosCrypto = new HashMap<>();
@@ -56,7 +55,7 @@ public class WalletViewModel extends AndroidViewModel {
                         break;
                     }
                 }
-                monedas.postValue(listaActual); // Actualiza la lista en el hilo principal
+                monedas.postValue(listaActual);
             }
         });
     }
@@ -81,7 +80,7 @@ public class WalletViewModel extends AndroidViewModel {
                         break;
                     }
                 }
-                monedas.postValue(listaActual); // Actualiza la lista en el hilo principal
+                monedas.postValue(listaActual);
             }
         });
     }

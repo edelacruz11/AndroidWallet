@@ -33,6 +33,18 @@
             android:id="@+id/action_wallet_to_send"
             app:destination="@id/sendFragment" />
 
+        <action
+            android:id="@+id/action_wallet_to_detalleNFTFragment"
+            app:destination="@id/detalleNFTFragment" />
+
+
+    <!-- Fragment Detalle NFT -->
+    <fragment
+        android:id="@+id/detalleNFTFragment"
+        android:name="com.example.androidwallet.DetalleNFTFragment"
+        android:label="fragment_detalle_nft"
+        tools:layout="@layout/fragment_detalle_nft" />
+
     <!-- Fragment Discover -->
     <fragment
         android:id="@+id/discoverBottomFragment"

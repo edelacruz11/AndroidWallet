@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="20dp">
 
     <ImageView
         android:id="@+id/crypto_imagen"
@@ -21,13 +21,17 @@
             android:id="@+id/crypto_nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:text="Bitcoin"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/crypto_cantidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="@color/black"
             android:text="0.5 BTC" />
     </LinearLayout>
 
@@ -35,6 +39,8 @@
         android:id="@+id/crypto_valor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@color/black"
         android:text="€15000"
         android:textStyle="bold" />
 </LinearLayout>

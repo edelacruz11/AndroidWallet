@@ -31,22 +31,18 @@ public class walletBottomFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Inicializar ViewModel
         walletViewModel = new ViewModelProvider(requireActivity()).get(WalletViewModel.class);
 
-        // Observar cambios en las criptos y actualizar el saldo total
         walletViewModel.getMonedas().observe(getViewLifecycleOwner(), lista -> {
             double total = 0.0;
             for (CryptoBalance crypto : lista) {
-                total += crypto.getValorEnEuros(); // Sumar los valores en euros de todas las criptos
+                total += crypto.getValorEnEuros();
             }
             binding.walletCantidad.setText(String.format("%.2f€", total));
         });
 
-        // Configurar ViewPager2 con adaptader
         binding.viewPager.setAdapter(new ViewPagerAdapter(this));
 
-        // Configurar TabLayout con ViewPager2
         new TabLayoutMediator(binding.tabLayout, binding.viewPager, (tab, position) -> {
             switch (position) {
                 case 0:
@@ -58,7 +54,6 @@ public class walletBottomFragment extends Fragment {
             }
         }).attach();
 
-        // Configurar botones de navegación
         binding.btnBuy.setOnClickListener(v ->
                 Navigation.findNavController(v).navigate(R.id.action_wallet_to_buy)
         );

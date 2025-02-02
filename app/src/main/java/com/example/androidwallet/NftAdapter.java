@@ -1,13 +1,13 @@
 package com.example.androidwallet;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.androidwallet.databinding.NftListBinding;
 
 import java.util.List;
 
@@ -21,16 +21,26 @@ public class NftAdapter extends RecyclerView.Adapter<NftAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.nft_list, parent, false);
-        return new ViewHolder(view);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        NftListBinding binding = NftListBinding.inflate(inflater, parent, false);
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         NFT nft = nfts.get(position);
-        holder.textView.setText(nft.getNombre());
-        holder.imageView.setImageResource(nft.getImagenResId());
+
+        holder.binding.nftNombre.setText(nft.getNombre());
+        holder.binding.nftImagen.setImageResource(nft.getImagenResId());
+
+        holder.binding.getRoot().setOnClickListener(v -> {
+            DetalleNFTFragment detalleFragment = DetalleNFTFragment.newInstance(nft);
+
+            Navigation.findNavController(v).navigate(
+                    R.id.action_wallet_to_detalleNFTFragment,
+                    detalleFragment.getArguments()
+            );
+        });
     }
 
     @Override
@@ -39,13 +49,11 @@ public class NftAdapter extends RecyclerView.Adapter<NftAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textView;
-        public ImageView imageView;
+        NftListBinding binding;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            textView = itemView.findViewById(R.id.nft_nombre);
-            imageView = itemView.findViewById(R.id.nft_imagen);
+        public ViewHolder(@NonNull NftListBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }

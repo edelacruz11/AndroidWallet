@@ -38,7 +38,7 @@ public class sendFragment extends Fragment {
         walletViewModel.getMonedas().observe(getViewLifecycleOwner(), listaMonedas -> {
             if (listaMonedas != null) {
                 List<String> nombresMonedas = listaMonedas.stream()
-                        .map(CryptoBalance::getNombre) // Usar CryptoBalance
+                        .map(CryptoBalance::getNombre)
                         .collect(Collectors.toList());
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
@@ -48,19 +48,16 @@ public class sendFragment extends Fragment {
             }
         });
 
-        // Botón para enviar
         binding.enviarMoneda.setOnClickListener(v -> {
             String monedaSeleccionada = (String) binding.monedasSpinnerEnviar.getSelectedItem();
             String cantidadStr = binding.cantidadMonedaEnviar.getText().toString().trim();
             String walletDestino = binding.otraWalletMonedaEnviar.getText().toString().trim(); // Campo de wallet
 
-            // Validar si la dirección de wallet está vacía
             if (walletDestino.isEmpty()) {
                 binding.otraWalletMonedaEnviar.setError("Ingrese una wallet de destino");
                 return;
             }
 
-            // Validar cantidad
             if (cantidadStr.isEmpty()) {
                 binding.cantidadMonedaEnviar.setError("Ingrese una cantidad");
                 return;
@@ -73,7 +70,6 @@ public class sendFragment extends Fragment {
                     return;
                 }
 
-                // Verificar si hay saldo suficiente
                 List<CryptoBalance> listaActual = walletViewModel.getMonedas().getValue();
                 if (listaActual != null) {
                     for (CryptoBalance crypto : listaActual) {

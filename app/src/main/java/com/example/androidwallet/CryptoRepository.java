@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 public class CryptoRepository {
 
     private final CryptoBalanceDao cryptoBalanceDao;
-    private final Executor executor; // Executor para tareas en segundo plano
+    private final Executor executor;
 
     public CryptoRepository(Application application) {
         CryptoDatabase db = CryptoDatabase.getDatabase(application);
@@ -24,7 +24,7 @@ public class CryptoRepository {
         return cryptoBalanceDao.getAll();
     }
 
-    // Insertar o actualizar una criptomoneda
+    // Actualizar una criptomoneda
     public void insertCryptoBalance(CryptoBalance cryptoBalance) {
         executor.execute(() -> cryptoBalanceDao.insert(cryptoBalance));
     }

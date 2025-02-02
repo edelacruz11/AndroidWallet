@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:background="@color/white">
 
-    <!-- Sección superior: Fondo azul -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +12,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- TextView para el nombre de la cartera -->
         <TextView
             android:id="@+id/wallet_name"
             android:layout_width="wrap_content"
@@ -36,7 +34,6 @@
             android:textColor="@color/white"
             android:textSize="40sp" />
 
-        <!-- Botones (en horizontal) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,7 +41,6 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <!-- Botón 1 -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,8 +49,6 @@
                 android:orientation="vertical"
                 android:padding="8dp">
 
-                <!-- El background sera una imagen a la que haremos referencia
-                de esta manera: @drawable/imagen -->
                 <ImageButton
                     android:id="@+id/btn_send"
                     android:layout_width="48dp"
@@ -72,7 +66,6 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <!-- Botón 2 -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,8 +74,6 @@
                 android:layout_marginLeft="20dp"
                 android:padding="8dp">
 
-                <!-- El background sera una imagen a la que haremos referencia
-                de esta manera: @drawable/imagen -->
                 <ImageButton
                     android:id="@+id/btn_buy"
                     android:layout_width="48dp"
@@ -102,7 +93,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Sección inferior: Fondo blanco -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -110,7 +100,6 @@
         android:orientation="vertical"
         android:background="@color/white">
 
-        <!-- TabLayout -->
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
@@ -118,7 +107,6 @@
             android:background="@color/white"
             android:elevation="4dp" />
 
-        <!-- ViewPager2 -->
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="match_parent"

@@ -34,14 +34,11 @@ public class Tab1Fragment extends Fragment {
 
         walletViewModel = new ViewModelProvider(requireActivity()).get(WalletViewModel.class);
 
-        // Configurar RecyclerView
         adapter = new Adapter(new ArrayList<>());
         binding.recyclerViewCoins.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerViewCoins.setAdapter(adapter);
 
-        // Observar cambios en la lista de monedas
         walletViewModel.getMonedas().observe(getViewLifecycleOwner(), listaMonedas -> {
-            // Pasar la lista de CryptoBalance al adaptader
             adapter.setData(listaMonedas);
             adapter.notifyDataSetChanged();
         });

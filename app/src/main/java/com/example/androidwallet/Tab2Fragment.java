@@ -30,7 +30,6 @@ public class Tab2Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Lista de NFT con imágenes de ejemplo
         List<NFT> nfts = Arrays.asList(
                 new NFT("Bored Ape", R.drawable.bored_ape),
                 new NFT("CryptoPunk", R.drawable.cryptopunk),
